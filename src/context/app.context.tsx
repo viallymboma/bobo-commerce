@@ -1,6 +1,7 @@
 "use client";
 
 import { SelectedProductType, SelectedProductTypes } from "@/lib/products";
+import { addProduct, overAllTotal, removeProduct } from "@/lib/utils";
 // import { convertNumberToFrench } from "@/lib/utilities";
 import React, { Dispatch, createContext, SetStateAction, useReducer } from "react";
 // import { SetCookie } from "./cookies/cookies";
@@ -11,7 +12,8 @@ type InitialStateType = {
     cartIsOpened: boolean; 
     selectedItems: SelectedProductTypes
     isAddButtonEnabled?: boolean, 
-    isRemoveButtonEnabled: boolean,
+    isRemoveButtonEnabled: boolean, 
+    totalItemsPrices: number, 
 }
 
 type ActionType = {
@@ -21,10 +23,11 @@ type ActionType = {
 
 
 const initialState: InitialStateType = {
-    cartIsOpened: true, 
+    cartIsOpened: false, 
     selectedItems: [], 
     isAddButtonEnabled: true, 
-    isRemoveButtonEnabled: false
+    isRemoveButtonEnabled: false, 
+    totalItemsPrices: 0, 
 };
 
 const reducer = (state: InitialStateType, action: ActionType) => {
@@ -37,68 +40,21 @@ const reducer = (state: InitialStateType, action: ActionType) => {
       };
 
     case 'ADDITEMTOCART':
-      let final_obj = action.payload; 
-      let final_array = state.selectedItems; 
-      // take id
-      const id = action.payload.id; 
-      final_array = [...final_array, final_obj]
-      // check if id exist in the selected items already
-      const existingProducts = final_array.map((item: SelectedProductType) => {
-        if (item?.id === id) {
-          console.log(item, item.quantity, ">>>>>>>>>")
-          item = {
-            ...item, 
-            quantity: item?.quantity ? item?.quantity + 1 : 1, 
-            totalPrice: item?.totalPrice ? item?.totalPrice + item?.price : item?.price, 
-          }
-          return item
-        }
-        return item
-      })
-
-      // // remove the duplicate
-      final_array = existingProducts.filter((obj, index, self) =>
-        index === self.findIndex((o) => o.id === obj.id && o.name === obj.name)
-      );
-      console.log("lllllll", final_array)
+      let final_array = addProduct (action.payload, state.selectedItems)
+      let total_of_all_items = overAllTotal (final_array)
       return {
         ...state,
-        selectedItems: final_array
+        selectedItems: final_array, 
+        totalItemsPrices: total_of_all_items, 
       };
 
     case 'REMOVEITEMTOCART':
-      let final_obj_ = action.payload; 
-      let final_array_ = state.selectedItems; 
-      // take id
-      const id_ = action.payload.id; 
-      final_array_ = [...final_array_, final_obj_]
-      // check if id exist in the selected items already
-      const existingProducts_ = final_array_.map((item: SelectedProductType) => {
-        if (item?.id === id_) {
-          console.log(item, item.quantity, ">>>>>>>>>")
-          item = {
-            ...item, 
-            quantity: item?.quantity > 0 ? item?.quantity - 1 : 0, 
-            totalPrice: item?.totalPrice > 0 ? item?.totalPrice - item?.price : 0, 
-          }
-          return item
-        }
-        return item
-      })
-
-      // // remove the duplicate
-      final_array_ = existingProducts_.filter((obj, index, self) =>
-        index === self.findIndex((o) => o.id === obj.id && o.name === obj.name)
-      );
-
-      final_array_ = final_array_.filter((item: SelectedProductType) => {
-        return item?.quantity > 0
-      })
-
-      console.log("lllllll", final_array_)
+      let final_array_ = removeProduct (action.payload, state.selectedItems)
+      let total_of_all_items_ = overAllTotal (final_array_)
       return {
         ...state,
-        selectedItems: final_array_
+        selectedItems: final_array_, 
+        totalItemsPrices: total_of_all_items_, 
       };
     
     default:

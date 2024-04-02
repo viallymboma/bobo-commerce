@@ -26,7 +26,9 @@ export default function RootLayout({
         {children}
         <CartComponent /> */}
         <EcommerceContextProvider>
-          <LayoutComponent children={ children } />
+          <LayoutComponent >
+            { children }
+          </LayoutComponent>
         </EcommerceContextProvider>
       </body>
     </html>
