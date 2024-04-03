@@ -18,8 +18,6 @@ const LayoutComponent = ({
         {
           state.cartIsOpened && <CartComponent />
         }
-      {/* <EcommerceContextProvider>
-      </EcommerceContextProvider> */}
     </>
   )
 }

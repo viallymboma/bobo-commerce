@@ -8,6 +8,7 @@ import { ProductType } from "@/lib/products";
 import Link from "next/link";
 import ProductComponent from "./common/modules/ProductComponent";
 import FilterProducts from "./common/modules/FilterProducts";
+import { Suspense } from "react";
 
 export default function Home() {
 
@@ -20,14 +21,11 @@ export default function Home() {
         <p className="text-center font-bold text-[25px] text-gray-300">Satisfait ton appeti de patisserie delicieuse et savoureuse</p>
       </header>
       <section className="w-[70%] grid grid-cols-[20%,80%] relative gap-3 ">
-        {/* <div className="sticky">
-          <header className="flex flex-col gap-3">
-            <h1 className="font-bold text-[16px]">Filter Products</h1>
-            <input type="text" name="searchAll" id="searchAllID" />
-          </header>
-        </div> */}
-        <FilterProducts />
-        <ProductComponent />
+
+        <Suspense>
+          <FilterProducts />
+          <ProductComponent />
+        </Suspense>
 
       </section>
     </main>

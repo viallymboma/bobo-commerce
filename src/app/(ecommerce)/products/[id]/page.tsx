@@ -11,9 +11,15 @@ const ProductDetailsPage = ({ params, searchParams }: {
     id: string | number
   },
   searchParams: ProductType | SelectedProductType
+  // searchParams: any
 }) => {
 
   // console.log("searchParams?.namesearchParams?.name", searchParams)
+  searchParams = {
+    ...searchParams, 
+    id: parseInt(searchParams?.id.toString()),
+    price: parseInt(searchParams?.price.toString()),
+  }
 
   return (
     <div className='flex min-h-screen flex-col justify-center items-center gap-[3rem] p-24'>

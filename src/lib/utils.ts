@@ -25,7 +25,7 @@ export const addProduct = (obj: any, selectedItems: any) => {
           item = {
             ...item, 
             quantity: item?.quantity ? item?.quantity + 1 : 1, 
-            totalPrice: item?.totalPrice ? item?.totalPrice + item?.price : item?.price, 
+            totalPrice: (item?.totalPrice) ? (item?.totalPrice) + item?.price : item?.price, 
           }
           return item
         }
@@ -51,7 +51,7 @@ export const removeProduct = (obj: any, selectedItems: any) => {
             item = {
                 ...item, 
                 quantity: item?.quantity > 0 ? item?.quantity - 1 : 0, 
-                totalPrice: item?.totalPrice > 0 ? item?.totalPrice - item?.price : 0, 
+                totalPrice: (item?.totalPrice) > 0 ? (item?.totalPrice) - item?.price : 0, 
             }
           return item
         }

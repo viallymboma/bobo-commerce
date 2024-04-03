@@ -7,6 +7,7 @@ import { SelectedProductType } from '@/lib/products';
 import { truncateText } from '@/lib/utils';
 
 import cartIcon from "../../../../public/images/pastery/biscuits/cart.png"
+import { useRouter } from 'next/navigation';
 
 const CartComponent = () => {
 
@@ -26,8 +27,11 @@ const CartComponent = () => {
 
     console.log("Selected Element Array", state.selectedItems)
 
+    const router = useRouter ()
+
     const proceedeToCheckout = () => {
-        console.log(); 
+        router.push("/checkout")
+        // console.log(); 
     }
 
     const [ selectedCookies, setSelectedCookie ] = useState ([])
@@ -68,7 +72,7 @@ const CartComponent = () => {
                             return (
                                 <div key={ selectedItem?.id } className='flex flex-row justify-between gap-[10px] border-b-[1px] border-slate-700 pb-3 mx-[1rem]'>
                                     <div className='border-[1px] rounded-lg border-slate-500 flex justify-center items-center px-[1rem]'>
-                                        <Image src={ imgLogo } width={ 40 } alt='img' />
+                                        <Image src={ selectedItem?.picture } width={ 40 } alt='img' />
                                     </div>
                                     <div className='w-full'>
                                         <h1 className='text-white text-left'>{ truncateText(selectedItem?.name, 15) }</h1>

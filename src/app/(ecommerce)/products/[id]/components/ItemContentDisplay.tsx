@@ -13,11 +13,15 @@ const ItemContentDisplay = ({ id, allData }: {
     allData: ProductType | SelectedProductType
 }) => {
     
-    console.log("datatatatata: ", allData)
+    console.log("datatatatata: ", allData, allData.price)
 
     // const { state, dispatch, addQuantity, } = useAddData ( allData )
     // const { removeQuantity } = useRemoveData (allData); 
-    const { selectedItems } = useGetData ()
+    allData = {
+        ...allData, 
+        price: parseInt(allData?.price?.toString())
+    }
+    const { selectedItems, selectedItem } = useGetData (parseInt(allData?.id?.toString()))
     console.log("KKKKKKK", selectedItems)
 
     const { state, dispatch } = useContext(EcommerceContext); 
@@ -29,6 +33,8 @@ const ItemContentDisplay = ({ id, allData }: {
     const addQuantity = (obj: any) => {
         dispatch({ type: "ADDITEMTOCART", payload: obj })
     }
+
+
     
     return (
         <div className='flex flex-col w-[50%] justify-center'>
@@ -43,23 +49,31 @@ const ItemContentDisplay = ({ id, allData }: {
             <div className='mt-[4rem]'>
                 <p> { allData?.description } </p>
             </div>
-            <div>
-                <button onClick={ () => addQuantity ( selectedItems ) } className='w-[60px] border-[1px] border-slate-500 flex flex-row justify-center items-center px-[1rem] py-[.5rem] rounded-lg'>
-                    Add To Cart
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="h-4 w-4 dark:text-neutral-500"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path></svg>
-                </button>
-            </div>
+            {
+                selectedItems?.length === 0 &&
+                    <div className='mt-[3rem]'>
+                        <button onClick={ () => addQuantity ( allData ) } className='bg-blue-600 w-[100%]  flex flex-row justify-center items-center px-[1rem] py-[.5rem] rounded-lg gap-[3rem]'>
+                            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="h-4 w-4 dark:text-neutral-500"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path></svg> */}
+                            Add To Cart
+                        </button>
+                    </div>
+            }
             {
                 selectedItems?.length > 0 &&
-                    <div className='border-[1px] border-slate-500 flex flex-row justify-center items-center gap-3 p-2 rounded-3xl'>
-                        <button onClick={ () => removeQuantity ( selectedItems ) }>
+                <>
+                    <div className='border-[1px] border-slate-500 flex flex-row justify-center items-center gap-[3rem] p-2 rounded-3xl mt-[3rem]'>
+                        <button onClick={ () => removeQuantity ( allData ) }>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="h-4 w-4 dark:text-neutral-500"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"></path></svg>
                         </button>
-                        <div className='text-white' >{ allData?.quantity }</div>
-                        <button onClick={ () => addQuantity ( selectedItems ) }>
+                        <div className='text-white' >{ selectedItem?.quantity }</div>
+                        <button onClick={ () => addQuantity ( allData ) }>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="h-4 w-4 dark:text-neutral-500"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path></svg>
                         </button>
                     </div>
+                    <div className='text-center mt-[3rem] text-[1.5rem]'>
+                    Total Price: { selectedItem?.totalPrice } FCFA
+                    </div>
+                </>
             }
         </div>
     )

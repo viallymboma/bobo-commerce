@@ -12,6 +12,16 @@ import React, { useCallback, useContext, useEffect, useState } from 'react'
 const ProductComponent = () => {
   
   const { state, dispatch } = useContext(EcommerceContext); 
+  const searchParams = useSearchParams ()
+  const writtenSearchParam = new URLSearchParams (searchParams)
+
+  const searchEle = writtenSearchParam.get ("search")
+
+  useEffect (() => {
+    if (searchEle) {
+      dispatch({ type: "FILTERPRODCUTS", payload: searchEle }) 
+    }
+  }, [])
 
   const addQuantity: any = (obj: ProductType) => {
     dispatch({ type: "ADDITEMTOCART", payload: obj })
@@ -20,7 +30,7 @@ const ProductComponent = () => {
   console.log("Selected Element Array", state.selectedItems)
   return (
     <div className="mt-[3rem] grid grid-cols-[repeat(auto-fit,minmax(150px,300px))] justify-center gap-3 relative">
-          { products && products.map ((product: ProductType ) => {
+          { state?.products && state?.products.map ((product: ProductType ) => {
             // const selectedItemsFromLocalStorage = JSON.parse(window.localStorage.getItem("selectedItems")!)
             // const correspondingelectedItems = selectedCookies ? selectedCookies.find((correspondingSel: ProductType) => {
             //   return product.id === correspondingSel?.id

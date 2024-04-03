@@ -1,5 +1,23 @@
 import { ProductTypes, SelectedProductType, SelectedProductTypes } from "@/lib/products"
 import imageCookie from "../../public/images/pastery/biscuits/cookie.png"
+import Coockies_Coco from "../../public/images/pastery/biscuits/Coockies_Coco.jpg"
+import COCO_CHOCOLAT_NOIR from "../../public/images/pastery/biscuits/COCO_CHOCOLAT_NOIR.jpg"
+
+import COOCKIES_CHOCOLAT_BLANC from "../../public/images/pastery/biscuits/COOCKIES_CHOCOLAT_BLANC.jpg"
+import COOCKIES_CHOCOLAT_NOIR from "../../public/images/pastery/biscuits/COOCKIES_CHOCOLAT_NOIR.jpg"
+import Madeleine_Pépites_de_Chocolat from "../../public/images/pastery/biscuits/Madeleine_Pépites_de_Chocolat.webp"
+import Madeleine_Coco_2 from "../../public/images/pastery/biscuits/Madeleine_Coco_2.jpg"
+import Madeleines_Miel_Citron from "../../public/images/pastery/biscuits/Madeleines_Miel_Citron.jpg"
+import Madeleine_Coco from "../../public/images/pastery/biscuits/Madeleine_Coco.jpg"
+import Sablés_Citron from "../../public/images/pastery/biscuits/Sablés_Citron.jpg"
+import Sablés_Coco from "../../public/images/pastery/biscuits/Sablés_Coco.jpg"
+import Sablés from "../../public/images/pastery/biscuits/Sablés.jpg"
+import PEPITES_DE_CHOCOLAT_BLANC from "../../public/images/pastery/biscuits/PEPITES_DE_CHOCOLAT_BLANC.jpg"
+import PEPITES_DE_CHOCOLAT_NOIR from "../../public/images/pastery/biscuits/PEPITES_DE_CHOCOLAT_NOIR.jpg"
+
+import Muffins_choco from "../../public/images/pastery/biscuits/Muffins_choco.jpg"
+import Daffy from "../../public/images/pastery/biscuits/Daffy.jpg"
+// import biscuitIcon from "../../"
 
 
 export const products: ProductTypes = [
@@ -9,7 +27,7 @@ export const products: ProductTypes = [
         description:"Fait à base de produits 100% natuels:chocolat noir, noix de coco et de la farine de patate.",
         category:"patisserie",
         price:500,
-        picture: imageCookie,
+        picture: Coockies_Coco,
         type:"Coockies",
     },
     {
@@ -18,7 +36,7 @@ export const products: ProductTypes = [
         description:"Riche en vitamines B,C,D,E. Et est fait à base de: Chocolat noir et de noix de coco",
         category:"Patisserie",
         price:900,
-        picture: imageCookie,
+        picture: COCO_CHOCOLAT_NOIR,
         type:"Coockies",
     },
     {
@@ -27,7 +45,7 @@ export const products: ProductTypes = [
         description:"Riche en vitamines B,C,D,E. et est fait à base de chocolat blanc et de farine naturelle.",
         category:"Patisserie",
         price:1900,
-        picture: imageCookie,
+        picture: COOCKIES_CHOCOLAT_BLANC,
         type:"Coockies",
     },
     {
@@ -36,7 +54,7 @@ export const products: ProductTypes = [
         description:"Riche en vitamines B,C,D,E : 0% conservateurs 0% additifs 0% colorants",
         category:"patisserie",
         price:1900,
-        picture: imageCookie,
+        picture: COOCKIES_CHOCOLAT_NOIR,
         type:"Coockies",
     },
     {
@@ -45,7 +63,7 @@ export const products: ProductTypes = [
         description:"0% conservateurs 0% additifs 0% colorants, est fait à base de produits naturels.",
         category:"Patisserie",
         price:500,
-        picture: imageCookie,
+        picture: Madeleine_Pépites_de_Chocolat,
         type:"Madeleine",
     },
     {
@@ -54,7 +72,7 @@ export const products: ProductTypes = [
         description:"Fait à base de farine de blé et de noix de coco.",
         category:"Patisserie",
         price:400,
-        picture: imageCookie,
+        picture: Madeleine_Coco_2,
         type:"Madeleine",
     },
     {
@@ -63,7 +81,7 @@ export const products: ProductTypes = [
         description:"fait à base de prosuits 100% natules notament du Miel et de la citronnelle et dont la majorité proviennent du Cameroun.",
         category:"Patisserie",
         price:400,
-        picture: imageCookie,
+        picture: Madeleines_Miel_Citron,
         type:"Madeleine",
     },
     {
@@ -72,7 +90,7 @@ export const products: ProductTypes = [
         description:"Fait à base farine de blé et de noix de coco.",
         category:"Patisserie",
         price:500,
-        picture: imageCookie,
+        picture: Madeleine_Coco,
         type:"Madeleine",
     },
     {
@@ -81,7 +99,7 @@ export const products: ProductTypes = [
         description:"Fait à base de beurre naturel et de farine de patate douce et de jus de citron.",
         category:"Patisserie",
         price:1500,
-        picture: imageCookie,
+        picture: Sablés_Citron,
         type:"Sablé",
     },
     {
@@ -90,7 +108,7 @@ export const products: ProductTypes = [
         description:"Fait à base de beurre naturel et de farine de patate douce, de noix de coco et de jus de citron.",
         category:"Patisserie",
         price:1500,
-        picture: imageCookie,
+        picture: Sablés_Coco,
         type:"Sablé",
     },
     {
@@ -99,7 +117,7 @@ export const products: ProductTypes = [
         description:"Fait à base de beurre naturel doux et de farine de patate douce.",
         category:"Patisserie",
         price:500,
-        picture: imageCookie,
+        picture: Sablés,
         type:"Sablé",
     },
     {
@@ -108,7 +126,7 @@ export const products: ProductTypes = [
         description:"produit fabriqué constitué de petits critaux de chocolat blanc made in Cameroun.",
         category:"Sucreries",
         price:1950,
-        picture: imageCookie,
+        picture: PEPITES_DE_CHOCOLAT_BLANC,
         type:"Pépites de chocolat",
     },
     {
@@ -117,7 +135,7 @@ export const products: ProductTypes = [
         description:"produit fabriqué constitué de petits critaux de chocolat noir made in Cameroun.",
         category:"Sucreries",
         price:1800,
-        picture: imageCookie,
+        picture: PEPITES_DE_CHOCOLAT_NOIR,
         type:"Pépites de chocolat",
     },
     {
@@ -126,7 +144,7 @@ export const products: ProductTypes = [
         description:"Gateau miniaturisé au chocolat noir avec des pépites de chocolat blanc et noir.",
         category:"Patisserie",
         price:500,
-        picture: imageCookie,
+        picture: Muffins_choco,
         type:"Cup cake",
     },
     {
@@ -135,7 +153,7 @@ export const products: ProductTypes = [
         description:"Biscuit fouré au chocolat noir.",
         category:"Patisserie",
         price:1000,
-        picture: imageCookie,
+        picture: Daffy,
         type:"Biscuit",
     },
 ]

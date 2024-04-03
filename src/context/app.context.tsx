@@ -1,6 +1,7 @@
 "use client";
 
-import { SelectedProductType, SelectedProductTypes } from "@/lib/products";
+import { products } from "@/app/products";
+import { ProductTypes, SelectedProductType, SelectedProductTypes } from "@/lib/products";
 import { addProduct, overAllTotal, removeProduct } from "@/lib/utils";
 // import { convertNumberToFrench } from "@/lib/utilities";
 import React, { Dispatch, createContext, SetStateAction, useReducer } from "react";
@@ -14,6 +15,7 @@ type InitialStateType = {
     isAddButtonEnabled?: boolean, 
     isRemoveButtonEnabled: boolean, 
     totalItemsPrices: number, 
+    products: ProductTypes, 
 }
 
 type ActionType = {
@@ -28,6 +30,7 @@ const initialState: InitialStateType = {
     isAddButtonEnabled: true, 
     isRemoveButtonEnabled: false, 
     totalItemsPrices: 0, 
+    products: products
 };
 
 const reducer = (state: InitialStateType, action: ActionType) => {
@@ -37,6 +40,32 @@ const reducer = (state: InitialStateType, action: ActionType) => {
       return {
         ...state,
         cartIsOpened: action.payload
+      };
+
+    case 'FILTERPRODCUTS':
+      // let final_array = addProduct (action.payload, state.selectedItems)
+      // let total_of_all_items = overAllTotal (final_array)
+      console.log("action.payloadaction.payload", action.payload)
+      let filteredResult: ProductTypes = []
+      if (action.payload) {
+        filteredResult = state.products.filter((prod) => {
+          // return action.payload == prod?.name || prod?.category || prod?.type || prod?.price
+          return prod?.name
+          .toLowerCase()
+          .includes(action.payload.toLowerCase()) ||
+          prod?.category
+          .toLowerCase()
+          .includes(action.payload.toLowerCase()) || 
+          prod?.type
+          .toLowerCase()
+          .includes(action.payload.toLowerCase())
+        })
+        
+      }
+      console.log("action.payloadaction.payload", filteredResult)
+      return {
+        ...state,
+        products: filteredResult.length > 0 ? filteredResult : products, 
       };
 
     case 'ADDITEMTOCART':
