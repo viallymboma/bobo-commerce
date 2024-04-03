@@ -19,9 +19,11 @@ const ItemContentDisplay = ({ id, allData }: {
     // const { removeQuantity } = useRemoveData (allData); 
     allData = {
         ...allData, 
-        price: parseInt(allData?.price?.toString())
+        // price: parseInt(allData?.price?.toString())
+        price: allData?.price, 
     }
-    const { selectedItems, selectedItem } = useGetData (parseInt(allData?.id?.toString()))
+    // const { selectedItems, selectedItem } = useGetData (parseInt(allData?.id?.toString()))
+    const { selectedItems, selectedItem } = useGetData (allData?.id)
     console.log("KKKKKKK", selectedItems)
 
     const { state, dispatch } = useContext(EcommerceContext); 

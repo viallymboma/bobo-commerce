@@ -10,15 +10,17 @@ const ProductDetailsPage = ({ params, searchParams }: {
   params: {
     id: string | number
   },
-  searchParams: ProductType | SelectedProductType
-  // searchParams: any
+  // searchParams: ProductType | SelectedProductType
+  searchParams: any
 }) => {
 
   // console.log("searchParams?.namesearchParams?.name", searchParams)
   searchParams = {
     ...searchParams, 
-    id: parseInt(searchParams?.id.toString()),
-    price: parseInt(searchParams?.price.toString()),
+    // id: parseInt(searchParams?.id.toString()),
+    // price: parseInt(searchParams?.price.toString()),
+    id: searchParams?.id,
+    price: searchParams?.price,
   }
 
   return (
